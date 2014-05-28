@@ -12,5 +12,40 @@
  */
 
 return array(
-    // ...
+    'service_manager' => array(
+    	'factories' => array(
+    		'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory'
+    	),
+    	'aliases' => array(
+    		'db' => 'Zend\Db\Adapter\Adapter'
+    	)
+    ),
+    'db' => array(
+    	'driver' => 'pdo',
+    	'dsn' => 'mysql:dbname=book;host=localhost',
+    	'username' => 'root',
+    	'password' => ''
+    )
+
+	/*'db' => array(
+		'adapters' => array(
+			'db_one' => array(
+				'dirver' => 'pdo',
+				'dsn' => 'mysql:dbname=db_1;host=localhost',
+				'username' => 'root',
+				'password' => ''
+			),
+			'db_two' => array(
+				'dirver' => 'pdo',
+				'dsn' => 'mysql:dbname=db_2;host=localhost',
+				'username' => 'root',
+				'password' => ''
+			)
+		)
+	),
+	'service_manager' => array(
+		'abstract_factories' => array(
+			'Zend\Db\Adapter\AdapterAbstractServiceFactory',
+		)
+	)*/
 );
