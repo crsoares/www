@@ -23,9 +23,9 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-    	$connection = $this->getServiceLocator()->get('db');
+    	/*$connection = $this->getServiceLocator()->get('db');
     	$profiler = new Profiler();
-    	$connection->setProfiler($profiler);
+    	$connection->setProfiler($profiler);*/
     	/*$query = $connection->query('SELECT * FROM cards WHERE type = ?', $connection::QUERY_MODE_PREPARE);
     	$replacements = array('number');
     	$result = $query->execute($replacements);*/
@@ -37,7 +37,7 @@ class IndexController extends AbstractActionController
     	}
     	die;*/
 
-    	$statement = $connection->createStatement();
+    	/*$statement = $connection->createStatement();
     	$statement->setSql('SELECT * FROM cards WHERE type = :type AND color = :color');
     	$container = new ParameterContainer(array(
     		'type' => 'picture', 'color' => 'diamond'
@@ -51,8 +51,11 @@ class IndexController extends AbstractActionController
     		//echo '<pre>'.print_r($res).'</pre>';
     	}
     	$results = $profiler->getProfiles();
-    	print_r($results);
-    	die;
+    	print_r($results);*/
+    	//die;
+
+        //$dbOne = $this->getServiceLocator()->get('db_one');
+        $dbOne = $this->getServiceLocator()->get('db_two');
 
         return new ViewModel();
     }
