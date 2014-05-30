@@ -23,7 +23,7 @@ class Module
         $eventManager->attach(
             ModuleEvent::EVENT_LOAD_MODULES_POST,
             function(ModuleEvent $event) {
-                echo '<pre>'.$event->moduleName.'</pre>'
+                //echo '<pre>'.$event->getModule().'</pre>';
             },
             -1000
         );
