@@ -19,6 +19,10 @@ use Zend\Db\Sql\Update;
 use Zend\Db\Sql\Where;
 use Zend\Db\Adapter\Profiler\Profiler;
 
+use Application\Model\SempleModel;
+use Application\Model\Hydrator\SempleModelHydrator;
+use Application\Model\Hydrator\Strategy\SempleHydratorStrategy;
+
 class IndexController extends AbstractActionController
 {
     public function indexAction()
@@ -54,8 +58,28 @@ class IndexController extends AbstractActionController
     	print_r($results);*/
     	//die;
 
-        //$dbOne = $this->getServiceLocator()->get('db_one');
-        $dbOne = $this->getServiceLocator()->get('db_two');
+        /*$dbOne = $this->getServiceLocator()->get('db_one');
+        $dbOne = $this->getServiceLocator()->get('db_two');*/
+
+        $model = new SempleModel();
+
+        $data = array(
+            'id' => 'Some id',
+            'value' => 'Alguns impressionante Valor',
+            'description' => 'Pecunia non olet'
+        );
+
+        $hydrator = new SempleModelHydrator();
+        $hydrator->addStrategy(
+            'primary', 
+            new SempleHydratorStrategy()
+        );
+
+        $newObject = $hydrator->hydrate($data, $model);
+
+        $extract = $hydrator->extract($newObject);
+
+        echo "<pre>".print_r($extract, true)."</pre>";die;
 
         return new ViewModel();
     }

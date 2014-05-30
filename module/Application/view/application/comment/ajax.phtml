@@ -1,0 +1,12 @@
+<table class="comments"></table>
+
+<script>
+	$(document).ready(function(){
+		$.get(
+			'/comment',
+			function(data) {
+				$('table.comments').html(data);
+			}
+		);
+	});
+</script>
